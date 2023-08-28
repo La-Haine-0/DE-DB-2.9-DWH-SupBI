@@ -11,15 +11,13 @@
 - Если вы выберите развертывания сервиса Clickhouse, то вам необходимо на уровне ddl скриптов заложить создание таблиц на слое mart, которые необходимо перенести с помощью инструментов миграции в СУБД Clickhouse. Скрипт миграции так же должен быть проинициализирован автоматически при создании контейнера с Clickhouse.
 - Также вам необходимо приложить к решению логическую модель вашего DWH в виде ER-диаграммы, а также README-файл с описанием логики работы приложения. 
 ### Решение:Проектирование и реализация Data Warehouse Defined и его последующая интеграция с BI инструментом Superset в рамках курса "Инженер данных".
-- В рамках данного задания создан DWH по продажам электроники в одном из сетевых магазинов(подойдет как пример учета продаж устройств с рук физического лица), написаны скрипты для создания таблиц и их наполнения с учётом слоёв Raw, Core, Mart. Логическая структура DWH представлена на ER-диаграмме по ссылке: <code>[./DWH.png]()</code>.
+- В рамках данного задания создан DWH по продажам электроники в одном из сетевых магазинов(подойдет как пример учета продаж устройств с рук физического лица), написаны скрипты для создания таблиц и их наполнения с учётом слоёв Raw, Core, Mart. Логическая структура DWH представлена на ER-диаграмме по ссылке: <code>[./DWH.png](https://github.com/La-Haine-0/DE-DB-2.9-DWH-SupBI/blob/main/DWH.png)</code>.
 
-- Скрипт DDL для создания таблиц для слоёв RAW, CORE: <code>[./init.sql]()</code>.
+- Скрипт DDL для создания таблиц для слоёв RAW, CORE: <code>[./init.sql](https://github.com/La-Haine-0/DE-DB-2.9-DWH-SupBI/blob/main/init.sql)</code>.
 
-- Скрипт DML для заполнения слоёв RAW, CORE: <code>[./data.sql]()</code>.
+- Скрипт DML для заполнения слоёв RAW, CORE: <code>[./data.sql](https://github.com/La-Haine-0/DE-DB-2.9-DWH-SupBI/blob/main/data.sql)</code>.
 
-- Скрипт для создания витрины данных: <code>[./data_mart.sql]()</code>.
-
-Dashboard по данным со слоя Mart. Скриншот по ссылке: <code>[./my_dashboard_example.png]()</code>.
+- Скрипт для создания витрины данных: <code>[./data_mart.sql](https://github.com/La-Haine-0/DE-DB-2.9-DWH-SupBI/blob/main/data-mart.sql)</code>.
 
 ### Как развернуть проект?
 
@@ -34,7 +32,7 @@ git clone git@github.com:La-Haine-0/DE-DB-2.9-DWH-SupBI.git
 2. Переходим в папку:
 
 ```sh
-cd ./DWH_Superset
+cd ./DE-DB-2.9-DWH-SupBI
 ```
 
 3. Скачиваем Superset:
@@ -49,10 +47,18 @@ git clone https://github.com/apache/superset.git
 cd superset
 ```
 
-5. Добавляем данные с моего репозитория в Superset:
+5. Добавляем данные из репозитория в Superset:
 
 ```sh
-cp -r ./../postgres_data ./postgres_data
+cp -f ./init.sql
+```
+
+```sh
+cp -f ./data.sql
+```
+
+```sh
+cp -f ./data-mart.sql
 ```
 
 ```sh
